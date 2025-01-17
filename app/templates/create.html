@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Create
+{% endblock %}
+
+
+{% block body %}
+<div class="centr">
+    <div class="centrr">
+        <h3>Create a Post</h3>
+        <form action="/create" method="post">
+            <div class="mb-3">
+                <input  name="posttitle" type="text" class="form-control" autocomplete="off" autofocus placeholder="Post Title">
+            </div>
+            <div class="mb-3">
+                <input  name="postcontent" type="text" class="form-control" autocomplete="off" autofocus placeholder="Post Content">
+            </div>
+
+            <div>
+                <select name="category">
+                    <option disabled selected value="">Select a Category</option>
+                    {% for category in categorieslist %}
+                        <option value="{{ category['name'] }}">{{ category["name"] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-info">Create Post</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+

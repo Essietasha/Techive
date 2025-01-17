@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Sign Up
+{% endblock %}
+
+
+{% block body %}
+    <div class="signupFlex">
+        <div class="signupLeftDiv">
+            <div>
+                <p>Course Walkthrough</p>
+                <p>Programming Languages & Concepts</p>
+                <p>Database Management</p>
+                <p>Computer Science Theory</p>
+                <p>Web Development</p>
+                <p>Career Development</p>
+                <p>Motivation & Mindset</p>
+                <p>Community & Support</p>
+                <p>Challenges and Solutions</p>
+                <p>Learning Resources</p>
+                <p>Course Updates</p>
+                <p>Final Project</p>
+            </div>
+            <p>&copy;2024</p>
+        </div>
+        <div class="signupRightDiv">
+            <h3>Sign Up to Techive</h3>
+            <form action="/signup" method="post">
+                <div class="mb-3">
+                    <label for="namelb" class="form-label">Enter Name</label>
+                    <input type="text" class="form-control" id="namelb" name="name" autocomplete="off" autofocus class="form-control" >
+                </div>
+                <div class="mb-3">
+                    <label for="passwordlb" class="form-label">Create Password</label>
+                    <input type="password" class="form-control" id="passwordlb" name="password" autocomplete="off" autofocus class="form-control" >
+                </div>
+                <div class="mb-3">
+                    <label for="confirmpasswordlb" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmpasswordlb" name="confirmpasswordlb" autocomplete="off" autofocus class="form-control" >
+                </div>
+                <button type="submit" class="btn btn-info">Sign Up</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

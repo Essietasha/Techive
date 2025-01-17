@@ -1,0 +1,13 @@
+venv/
+instance/
+migrations/
+__pycache__/
+*.pyc
+*.pyo
+static/css/
+static/js/
+.env
+.flaskenv
+.vscode/
+.idea/
+flask_session/

@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Posts
+{% endblock %}
+
+{% block body %}
+    <!-- Display flash message
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <p class="flash {{ category }}">{{ message }}
+                      <button class="close" onclick="this.parentElement.style.display='none'">&times;</button>
+                    </p>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %} -->
+    
+
+  <div class="postsPage">
+    <h3>Your Posts</h3>
+    {% if posts.total  > 0 %}
+        {% for post in posts.items %}
+        <div class="posts">
+            <div>
+              <img src="/static/images/personi.png"/>
+            </div>
+            <div>
+              <div class="creatorDiv">
+                <p class="creator">
+                    You
+                </p>
+                <p class="date">
+                    {{ post.date_posted.strftime("%m/%d/%y, %I:%M %p") }}
+                </p>
+              </div>
+              <p class="postcategory"><strong>{{ post.category_name }}</strong></p> 
+              <h6 class="title">{{ post.title }}</h6>
+              <p>{{ post.content }}</p>
+              <a href="/edit/{{ post.id }}" class="btn btn-primary btn-sm">Edit</a>
+              <form action="/delete/{{ post.id }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-dark btn-sm">Delete</button>
+              </form>
+            </div>
+        </div>
+        {% endfor %}
+
+      
+      <div class="pagination">
+        {% if posts.has_prev %}
+            <a href="{{ url_for('myposts', page=posts.prev_num, q=request.args.get('q')) }}">Previous</a>
+        {% endif %}
+        {% if posts.has_next %}
+            <a href="{{ url_for('myposts', page=posts.next_num, q=request.args.get('q')) }}">Next</a>
+        {% endif %}
+      </div>
+    {% else %}
+    <div class="noposts">
+      <p>You have no posts available at the moment!</p>
+      <a href="/create" class="btn btn-info">Create one now</a>
+    </div>
+    {% endif %}
+  </div>
+{% endblock %}

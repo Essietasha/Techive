@@ -1,0 +1,48 @@
+Python Installation
+Venv - Virtual Environment Set up:
+    cd to project folder
+    Run: python -m venv venv
+Venv Activate:
+    .\venv\Scripts\activate
+Packages installation: pip install flask flask-sqlalchemy flask-session, flask_migrate, flask_bycrypt
+Set up the Folder Structure:
+        app: static, templates, __init__.py, models.py, routes.py
+        run.py
+        config.py
+        requirements.txt
+        blog.db(auto-generated)
+        venv(auto-generated)
+        flask_session(auto-generated)
+        migrations(auto-generated)
+Run App: 
+    .\venv\Scripts\activate
+    python run.py
+Database set up:
+    Activate venv
+    Set up/Configure __init__.py
+    Set the FLASK_APP Environment Variable: 
+        On cmd, Run: set FLASK_APP=run.py
+        On Powershell, Run: $env:FLASK_APP = "run.py"
+    Create models in models.py
+    Run: flask shell in terminal.
+    Inside the Flask shell, run: from app import db
+    Then run: db.create_all()
+    Quit flask shell Run: exit() or quit()
+    To Deactivate Venv Run: deactivate
+
+
+Migration - Run Database Migrations- Update models/column/table in database
+    Exit Virtual Environment : Run; deactivate
+    Update the Model in models.py
+    Reactivate Virtual Environment
+    Set the FLASK_APP Environment Variable: 
+        On cmd, Run: set FLASK_APP=run.py
+        On Powershell, Run: $env:FLASK_APP = "run.py"
+    Verify Your __init__.py Configuration: 
+        In __init.py__ add:
+            migrate = Migrate(app, db)
+            from app import routes, models
+    Generate a Migration Script - Run migration in venv; Run:
+        flask db init
+        flask db migrate -m "Add migrations comment"
+        flask db upgrade

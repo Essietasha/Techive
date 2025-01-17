@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Login
+{% endblock %}
+
+
+{% block body %}
+    <div class="signupFlex">
+        <div class="signupLeftDiv">
+            <div>
+                <p>Course Walkthrough</p>
+                <p>Programming Languages & Concepts</p>
+                <p>Database Management</p>
+                <p>Computer Science Theory</p>
+                <p>Web Development</p>
+                <p>Career Development</p>
+                <p>Motivation & Mindset</p>
+                <p>Community & Support</p>
+                <p>Challenges and Solutions</p>
+                <p>Learning Resources</p>
+                <p>Course Updates</p>
+
+                <p>Final Project</p>
+            </div>
+            <p class="copy">&copy;2024</p>
+        </div>
+        <div class="signupRightDiv">
+            <h3>Login to Techive</h3>
+            <form action="/login" method="post">
+                <div class="mb-3">
+                    <label for="namelb" class="form-label">Username</label>
+                    <input type="text" class="form-control " id="namelb" name="name" autocomplete="off" autofocus>
+                </div>
+                <div class="mb-3">
+                    <label for="passwordlb" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="passwordlb" name="password" autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-info">Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Categories
+{% endblock %}
+
+
+{% block body %}
+    <div class="category">
+        <div>
+            <h4>Category: {{ category_name }}</h4>
+            {% if posts|length > 0 %}
+                {% for post in posts %}
+                    <div class="posts">
+                        <div>
+                            <img src="/static/images/personi.png"/>
+                        </div>
+                        <div>
+                            <div class="creatorDiv">
+                                <p class="creator">
+                                    @{{ post.creator_name }}
+                                </p>
+                                <p class="date">
+                                    {{ post.date_posted.strftime("%m/%d/%y, %I:%M %p") }}
+                                </p>
+                            </div>
+                            <h6 class="title">{{ post.title }}</h6>
+                            <p>{{ post.content }}</p>
+                        </div>
+                    </div>
+            {% endfor %}
+        {% else %}
+            <p class="noposts">No posts available in this category!</p>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

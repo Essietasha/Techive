@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Home
+{% endblock %}
+
+
+{% block body %}
+    <div class="homebg">
+        <div>
+            <p class="slogan">Your Hive of Technology <br> and Ideas</p>
+            <a href="/create" class="startBtn">Start Creating</a>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}
+

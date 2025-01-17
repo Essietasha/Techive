@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Creators
+{% endblock %}
+
+
+{% block body %}
+<div class="postsPage">
+    {% for user in users %}
+    <div class="posts">
+        <div>
+            <img src="/static/images/personi.png"/>
+        </div>
+        <div>
+            <div class="allcreator">
+                <h6 class="{% if user.id == current_user %}highlight{% endif %}">
+                    @{{ user.username }}
+                    {% if user.id == current_user %}
+                        <span class="you-tag">You</span>
+                    {% endif %}
+                </h6>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

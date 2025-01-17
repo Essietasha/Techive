@@ -1,0 +1,129 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    All Posts
+{% endblock %}
+
+
+{% block body %}
+<div class="postsPage">
+    <h3>POSTS</h3>
+    {% if not posts.items %}
+        <p class="noposts">No posts available. Check back later!</p>
+    {% endif %}
+
+    {% for post in posts.items %}
+    <div class="posts">
+        <div>
+            <img src="/static/images/personi.png"/>
+        </div>
+        <div>
+            <div class="creatorDiv">
+                <p class="creator">
+                    @{{ post.creator_name }}
+                </p>
+                <p class="date">
+                    {{ post.date_posted.strftime("%m/%d/%y, %I:%M %p") }}
+                </p>
+            </div>
+            <h6 class="postcategory">
+                {{ post.category_name }}
+            </h6>
+            <h6 class="title">
+                {{ post.title }}
+            </h6>
+            <p>
+                {{ post.content }}
+            </p>
+            <div>
+                <div class="like_comment">
+                    
+                    <div method="POST" action="{{ url_for('like_post', post_id=post.id) }}">
+                        <button type="button" class="likebtn" data-post-id="{{ post.id }}">
+                            <i class="fa fa{{'solid' if user_liked else 'regular'}} fa-heart"></i>
+                        </button>
+                        <span id="likes-count-{{ post.id }}">{{ post.likes.count() }}</span>
+                    </div>           
+                    
+                    <div>
+                        <button class="toggle-comments-btn" onclick="toggleComments('{{ post.id }}')">
+                            <i class="fa fa-comment-dots"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="comments-{{ post.id }}" class="comments-section" style="display: none;">
+                    <form method="POST" action="{{ url_for('comment_post', post_id=post.id) }}">
+                        <textarea name="commentposted" required placeholder="Leave your thoughts here..."></textarea>
+                        <button type="submit">Post</button>
+                    </form>
+                        {% for comment in post.comments %}
+                        <div>
+                            <span class="creator">@{{ comment.user.username }}</span>
+                            <span>{{ comment.comment_content }}</span>
+                        </div>
+                        {% endfor %}
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="pagination">
+        {% if posts.has_prev %}
+            <a href="{{ url_for('allposts', page=posts.prev_num, q=request.args.get('q')) }}">Previous</a>
+        {% endif %}
+        {% if posts.has_next %}
+            <a href="{{ url_for('allposts', page=posts.next_num, q=request.args.get('q')) }}">Next</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".likebtn").forEach(button => {
+        button.addEventListener("click", event => {
+            const postId = button.dataset.postId; // Get post ID from a data attribute
+            fetch(`/like/${postId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'same-origin' // Include session cookies
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    // const icon = button.querySelector('i');
+                    // icon.classList.toggle('fa-solid', data.user_liked);
+                    // icon.classList.toggle('fa-regular', !data.user_liked);
+
+                    button.innerHTML  = data.liked ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>';
+                    const likesCountElement = document.querySelector(`#likes-count-${postId}`);
+                    likesCountElement.textContent = `${data.likes_count}`;
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    });
+});
+
+// Function to toggle the visibility of the comments section
+function toggleComments(postId) {
+    // postId = parseInt(postId); 
+    const commentsSection = document.getElementById('comments-' + postId);
+    if (commentsSection.style.display === 'none') {
+        commentsSection.style.display = 'block';
+    } else {
+        commentsSection.style.display = 'none';
+    }
+}
+</script>
+{% endblock %}

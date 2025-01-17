@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+
+{% block title %}
+    Category
+{% endblock %}
+
+
+{% block body %}
+<div class="centr">
+    <div class="centrr categoryDivEl">
+        <h3>Select a Category of Post to View</h3>
+        <form action="/category" method="post">
+            <div>
+                    {% for category in categories %}
+                        <button name="category"  value="{{ category.name }}" type="submit" class="btn btn-dark btnCategory">{{ category.name }}</option>
+                    {% endfor %}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+{% endblock %}

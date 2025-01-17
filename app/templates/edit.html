@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Post
+{% endblock %}
+
+{% block body %}
+<div class="centr">
+    <div class="centrr editEl">
+        <h3>Edit Post</h3>
+        <form action="/edit/{{ post.id }}" method="post">
+            <div class="mb-3">
+                <input  type="text" id="posttitle" name="posttitle" value="{{ post.title }}" required placeholder="Post Title">
+            </div>
+            <div>
+                <textarea id="postcontent" name="postcontent" required>{{ post.content }}</textarea>
+            </div>
+            <div>
+                <p><strong>Category:</strong> {{ post.category.name }}</p>
+            </div>
+            <button type="submit" class="btn btn-success">Update Post</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
