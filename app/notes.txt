@@ -82,9 +82,9 @@ Hosting on Pythoneverwhere
     3. Zip Project Folder to a .zip file.
     4. Go to the Files tab.
         In the root directory e.g /home/essietasha 
-        Upload zipped Folder
+        Upload zip Folder
     5. Go to Console tab.
-        Close existing console. Create new one.
+        Close existing console. Create new Bash console.
         Run cd (to navigate to root directory). 
         Run unzip foldername.zip
     6. After unzipping, cd into folder name. e.g cd Techive
