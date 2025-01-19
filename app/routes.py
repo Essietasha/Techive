@@ -59,7 +59,9 @@ def allposts():
             post.user_liked = Like.query.filter_by(user_id=user_id, post_id=post.id).first() is not None
         else:
             post.user_liked = False
-            
+    
+        post.comment_count = post.comments.count()
+
     if not posts.items:
         flash("No posts found!", "info")
         return render_template("noposts.html")

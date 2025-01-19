@@ -336,6 +336,14 @@ footer .footer .about {
   align-items: center;
   gap: 0.5rem;
 }
+.postsPage .posts .creatorDiv .toggle-comments-btn, .postsPage .posts .like_comment .toggle-comments-btn {
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+}
 .postsPage .posts .postFlex {
   display: block;
   justify-content: center;

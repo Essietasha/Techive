@@ -46,3 +46,73 @@ Migration - Run Database Migrations- Update models/column/table in database
         flask db init
         flask db migrate -m "Add migrations comment"
         flask db upgrade
+
+Sass Rerun: sass --watch app/static/scss:app/static/css
+
+Generating SECRET_KEY: Steps to Properly Manage Flask Secret Key:
+    1. Generate a Secure Key: In Venv, Run: python -c "import secrets; print(secrets.token_hex(24))" This will produce a secure key such as 09f823a6b9c923b2e9a7f6f2af3d5c76c3f45ef7c2e4
+
+    2. Create a .env file in the root folder. 
+    3. In the .env file, add:
+        SECRET_KEY=c7a82b43ad21450e9228f4fa3b75c482
+        SQLALCHEMY_DATABASE_URI=sqlite:///blogpost.db
+        SESSION_TYPE=filesystem
+        Save.
+    4. Install python-dotenv: Run: pip install python-dotenv
+    5. Load Environment Variables in _init_.py
+        In _init_.py, add:
+        from dotenv import load_dotenv
+        import os
+
+        load_dotenv()
+
+        app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+        app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+        app.config['SESSION_TYPE'] = os.getenv('SESSION_TYPE')
+
+    6. Run app.
+
+
+Hosting on Pythoneverwhere
+    Be sure to generate a secret key to load enviroment variables using flask. Steps above.
+    Create a .gitignore file. Add: venv/ instance/ migrations/ __pycache__/ *.pyc *.pyo .env static/css/ static/js/ .flaskenv .vscode/ .idea/ flask_session/
+
+    1. Prepare App Structure for Deployment
+    2. Log in to PythonAnywhere.
+    3. Zip Project Folder to a .zip file.
+    4. Go to the Files tab.
+        In the root directory e.g /home/essietasha 
+        Upload zipped Folder
+    5. Go to Console tab.
+        Close existing console. Create new one.
+        Run cd (to navigate to root directory). 
+        Run unzip foldername.zip
+    6. After unzipping, cd into folder name. e.g cd Techive
+    7. Create a Virtual Environment. Activate it.
+        Run python3 -m venv venv
+        Run source venv/bin/activate
+
+    8. Run pip install flask
+       Run pip install -r requirements.txt
+    9. Go to Web. Add a new Web App.
+    10. WSGI Configuration:
+
+        import sys
+        import os
+
+        path = '/home/essietasha/Techive'
+        if path not in sys.path:
+            sys.path.append(path)
+        from run import app as application
+    11. Set the Working Directory and Source Code in Web App e.g /home/essietasha/Techive
+
+
+Key changes/not necessary:
+    Static/Template set up in __init__.py: 
+        app = Flask(__name__, static_folder="static", template_folder="templates")
+
+    For typing extension: In requirements.txt, update typing extensions to be: typing_extensions==4.12.2
+
+    Requirements.txt:
+        To Create requirements.txt: Run pip freeze > requirements.txt
+        To Install Dependencies: Run pip install -r requirements.txt

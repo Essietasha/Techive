@@ -405,6 +405,16 @@ footer{
             justify-content: flex-start;
             align-items: center;
             gap: 0.5rem;
+
+            
+            .toggle-comments-btn{
+                border: none;
+                cursor: pointer;
+                align-items: center;
+                justify-content: center;
+                padding: 0;
+                background: none;
+            }
         }
 
         .postFlex{
@@ -643,6 +653,7 @@ footer{
 .slightanime{
     animation: slightAnime 5s ease normal;
 }
+
 
 @keyframes homeSlide{
     from {

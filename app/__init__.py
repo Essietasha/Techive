@@ -3,14 +3,18 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from flask_migrate import Migrate
 from app.helpers import liked_by_user
+from dotenv import load_dotenv
+import os
 
+
+load_dotenv()
 
 app = Flask(__name__)
 
 # Configuration
-app.config['SECRET_KEY'] = 'c94c8f7d61d9a8e5e31c6b0346a524za'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blogpost.db'  # SQLite for local dev
-app.config['SESSION_TYPE'] = 'filesystem'
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SESSION_TYPE'] = os.getenv('SESSION_TYPE')
 
 # Initialize extensions
 db = SQLAlchemy(app)
