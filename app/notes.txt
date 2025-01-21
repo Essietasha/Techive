@@ -116,3 +116,41 @@ Key changes/not necessary:
     Requirements.txt:
         To Create requirements.txt: Run pip freeze > requirements.txt
         To Install Dependencies: Run pip install -r requirements.txt
+
+
+STEPS To Recreate/Drop Database / Drop Tables Manually via Flask Shell
+    Drop All Tables
+        In venv: Run 
+            flask shell
+            from app import db
+            db.drop_all()
+
+    Recreate Database / If Using Flask Migrate
+    NOTE: Don't use shell for this
+        In venv: Run 
+            flask db migrate -m "Recreating the database"
+            flask db upgrade  ###### To Apply migrations
+
+            OR
+            In venv: Run  
+            flask shell
+            from app import db OR 
+            db.create_all()
+
+
+
+CSFR AND XSS Malware Attack Protection
+1. Enable CSRF (Cross-Site Request Forgery) Protection.
+2. Using WTForms for Form Validation
+3. Validating Inputs: Allow only alphnum characters. 
+        import re
+4. Sanitize Inputs (XSS Protection): Bleach. This will prevent any malicious scripts from being executed if the input contains any <script> or HTML tags.
+        python -m pip install bleach
+        import bleach
+4. Validating Passwords: Regex for Strong Password Validation.
+5. Password hashing: with libraries like werkzeug.security's generate_password_hash and check_password_hash.
+6. Setting your password input field as type="password" in HTML. 
+
+
+//Create admin.py Update db.
+    In venv: Run python admin.py

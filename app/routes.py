@@ -4,13 +4,38 @@ from app import app, db
 from app.models import User, Post, Category, Like, Comment
 from app.helpers import login_required, error
 from flask import make_response
-
+import re
+import bleach
 
 
 @app.after_request
 def add_header(response):
     response.cache_control.no_store = True
     return response
+
+# Validation Function
+def validate_input(input_str):
+    pattern = r"^[A-Za-z0-9.,!+\-?'@#&’\";:\s]+$"
+    if not re.match(pattern, input_str):
+        raise ValueError("Invalid input. Only alphabets, numbers, and .,!?@#&'\";: are allowed.")
+    return input_str
+
+def validate_password(password):
+    # Password policy with regex
+    pattern = r"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$"
+    if not re.match(pattern, password):
+        raise ValueError(
+            "Password must be at least 8 characters long, include an uppercase letter, "
+            "a lowercase letter, a digit, and a special character."
+        )
+    return password
+
+
+def sanitize_input(input_str):
+    # Clean input to remove all HTML tags and allow only plain text
+    return bleach.clean(input_str, tags=[], attributes={}, strip=True)
+
+
 
 categorieslist = [
     {'id': 1, 'name': 'Programming Languages'},
@@ -97,28 +122,6 @@ def like_post(post_id):
     return jsonify({"liked": liked, "likes_count": post.likes.count()})
 
 
-# @app.route('/like/<int:post_id>', methods=['POST'])
-# def like_post(post_id):
-
-#     user_id = session.get("user_id")
-
-#     if not user_id:
-#         flash("You need to log in to like a post.", "error")
-#         return redirect("/login")
-
-#     post = Post.query.get_or_404(post_id)
-#     existing_like = Like.query.filter_by(user_id=user_id, post_id=post_id).first()
-    
-#     if existing_like:
-#         db.session.delete(existing_like)
-#     else:
-#         like = Like(user_id=user_id, post_id=post_id)
-#         db.session.add(like)
-    
-#     db.session.commit()
-#     return redirect(request.referrer or "/allposts")
-
-
 @app.route('/comment/<int:post_id>', methods=['POST'])
 def comment_post(post_id):
 
@@ -129,19 +132,25 @@ def comment_post(post_id):
         return redirect("/login")
     
     post = Post.query.get_or_404(post_id)
-    comment_content = request.form.get('commentposted')
+    commentContent = request.form.get('commentposted')
 
     # White space check
-    if not comment_content.strip():
+    if not commentContent.strip():
         flash("Comment cannot be empty", "error")
         return redirect(request.referrer or "/allposts")
     
-    # If request.form.get('commentposted') is None, it could lead to unexpected issues.
-    if not comment_content:
+    if not commentContent:
         flash("Comment cannot be empty", "error")
         return redirect(request.referrer or "/allposts")
-
-    new_comment = Comment(comment_content=comment_content, user_id=user_id, post_id=post_id)
+    
+    try:
+        validateComment = validate_input(commentContent)
+        sanitizedComment = sanitize_input(validateComment)
+    except Exception as e:
+        flash(str(e), "danger")
+        return redirect("/allposts")
+    
+    new_comment = Comment(comment_content=sanitizedComment, user_id=user_id, post_id=post_id)
     db.session.add(new_comment)
     db.session.commit()
     return redirect(request.referrer or "/allposts")
@@ -161,7 +170,13 @@ def login():
             flash("Enter Username and Password!", "danger")
             return redirect("/login")
         
-        username = username.lower()        
+        try:
+            username = sanitize_input(validate_input(username)).lower()
+        except Exception as e:
+            flash(str(e), "danger")
+            return redirect("/login")
+        
+        # username = username.lower()        
         user = User.query.filter_by(username=username).first()
         
         if not user or not check_password_hash(user.passwordhash, password):
@@ -203,12 +218,22 @@ def signup():
             flash("Oops! Your passwords don't match!", "danger")
             return redirect("/signup")
 
-        if len(password) < 6:
+        if len(password) < 8:
             flash("Password must be at least 6 characters long.", "danger")
             return redirect("/signup")
-
-        username = username.lower()  # Ensure username is case-insensitively unique
-
+        
+        # Validate and sanitize inputs
+        try:
+            username = sanitize_input(validate_input(username)).lower()
+            validate_password(password)
+            validate_password(confirmPassword)
+        except Exception as e:
+            flash(str(e), "danger")
+            return redirect("/signup")
+        
+        # username = username.lower()  # Ensure username is case-insensitively unique
+        
+        # Check if username exists in database
         existingUsername = User.query.filter_by(username=username).first()
         if existingUsername:
             flash(f"Oops! {username} has been taken! Retry another!", "danger")
@@ -245,7 +270,20 @@ def create():
         if not post_title or not post_content or not post_category:
             flash("Please fill in all fields!", "danger")
             return redirect("/create")
-
+        
+        if len(post_title) < 5 or len(post_content) < 5:
+            flash("Title and content must be at least 5 characters.", "danger")
+            return redirect("/create")
+        
+        try:
+            validateTitle = validate_input(post_title)
+            sanitizedTitle = sanitize_input(validateTitle)
+            validateComment = validate_input(post_content)
+            sanitizedComment = sanitize_input(validateComment)
+        except Exception as e:
+            flash(str(e), "danger")
+            return redirect("/create")
+    
         category = Category.query.filter_by(name=post_category).first()
         if not category:
             # Create and save the new category if it doesn't exist
@@ -261,8 +299,8 @@ def create():
             return redirect("/create")
   
         new_post = Post(
-            title=post_title,
-            content=post_content,
+            title=sanitizedTitle,
+            content=sanitizedComment,
             creator_id=user_id,
             category_id=category_id,
             creator_name=creator.username,
@@ -313,9 +351,12 @@ def myposts():
 
 @app.route("/creators")
 def creators():
+    # cu_id : current user id
     users = User.query.all()
-    current_user = session.get("user_id")
-    return render_template("creators.html", users=users, current_user=current_user)
+    cu_id = session.get("user_id")
+    current_user = User.query.filter_by(id=cu_id).first() if cu_id else None
+    is_admin = current_user.is_admin if current_user else False
+    return render_template("creators.html", users=users, current_user=current_user, is_admin=is_admin)
 
 
 @app.route("/edit/<int:post_id>", methods=["GET", "POST"])
@@ -334,10 +375,19 @@ def edit_post(post_id):
         if not post_title or not post_content:
             flash("Please fill in all fields!", "danger")
             return redirect(f"/edit/{post_id}")
-
+        
+        try:
+            validateTitle = validate_input(post_title)
+            sanitizedTitle = sanitize_input(validateTitle)
+            validateComment = validate_input(post_content)
+            sanitizedComment = sanitize_input(validateComment)
+        except Exception as e:
+            flash(str(e), "danger")
+            return redirect("/allposts")
+        
         # Update the post
-        post.title = post_title
-        post.content = post_content
+        post.title = sanitizedTitle
+        post.content = sanitizedComment
         db.session.commit()
 
         flash("Post updated successfully!", "success")
@@ -364,3 +414,46 @@ def delete_post(post_id):
 @app.route("/progress")
 def progress():
     return render_template("progress.html")
+
+
+@app.route('/delete_user/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def delete_user(user_id):
+    if request.method == "POST":
+        current_user = User.query.get(session.get("user_id"))
+
+        if not current_user.is_admin:
+            flash("Unauthorized action!", "danger")
+            return redirect("/creators")
+
+        user_to_delete = User.query.get_or_404(user_id)
+
+        # Prevent admin from deleting themselves
+        if user_to_delete.id == current_user.id:
+            flash("You cannot delete your own account.", "danger")
+            return redirect("/creators")
+
+        try:
+            user = User.query.get(user_id)
+            Post.query.filter_by(creator_id=user.id).delete()
+            Comment.query.filter_by(user_id=user.id).delete()
+            Like.query.filter_by(user_id=user.id).delete()
+            db.session.delete(user)
+            db.session.commit()
+
+            # Delete the user
+            db.session.delete(user_to_delete)
+            db.session.commit()
+
+            # Reaffirm my admin status
+            admin_user = User.query.get(current_user.id)
+            if admin_user:
+                admin_user.is_admin = True 
+                db.session.commit()
+
+            flash(f"User {user_to_delete.username} has been deleted.", "success")
+            return redirect("/creators")
+        except Exception as e:
+            db.session.rollback()
+            flash("An error occurred while deleting the user.", "danger")
+            return redirect("/creators")

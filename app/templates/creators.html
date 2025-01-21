@@ -15,10 +15,20 @@
         </div>
         <div>
             <div class="allcreator">
-                <h6 class="{% if user.id == current_user %}highlight{% endif %}">
+                <h6 class="{% if user.id == cu_id %}highlight{% endif %}">
                     @{{ user.username }}
-                    {% if user.id == current_user %}
+                    {% if user.id == current_user.id %}
                         <span class="you-tag">You</span>
+                    {% endif %}
+                    {% if user.is_admin %}
+                        <span class="you-tag">Admin</span>
+                    {% endif %}
+
+                    {% if is_admin and user.id != current_user.id %}
+                    <!-- Prevent deleting me -->
+                        <form action="/delete_user/{{ user.id }}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     {% endif %}
                 </h6>
             </div>
