@@ -602,7 +602,7 @@ footer .footer .telephone, footer .footer .mail {
 .blog {
   background-color: #fff;
   color: #111;
-  padding: 5rem 2rem 2rem 2rem;
+  padding: 1rem 3rem;
   overflow: hidden;
 }
 .blog .boxes {
@@ -806,7 +806,7 @@ footer .footer .telephone, footer .footer .mail {
   }
   .blog {
     color: #111;
-    padding: 2rem 1rem;
+    padding: 1rem;
   }
   .blog .boxes {
     display: block;
