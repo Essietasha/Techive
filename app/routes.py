@@ -62,6 +62,10 @@ def inject_user_status():
 def index():
     return render_template("homepage.html")
 
+@app.route("/blog")
+def blog():
+    return render_template("blog.html")
+
 @app.route("/allposts")
 @login_required
 def allposts():

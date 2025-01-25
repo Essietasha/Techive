@@ -12,6 +12,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='images/brand.png') }}">
         <link rel="preload" href="{{ url_for('static', filename='images/homebgbig.jpg') }}" as="image">
         <title>Techive {% block title %}{% endblock %}</title>
     </head>
@@ -39,6 +40,9 @@
                         <a class="nav-link" href="/myposts">My Posts</a>
                         <a class="nav-link" href="/category">Categories</a>
                         <a class="nav-link" href="/creators">Creators</a>
+                        <a class="nav-link" href="/blog">Blog</a>
+                        <a class="nav-link" href="#about">About Us</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                         <a class="nav-link" href="/logout">Logout</a>
                         <form action="/allposts" method="get" style="display: inline;" class="searchbox">
                             <input type="text" name="q" placeholder="Search posts..." autocomplete="off" required>
@@ -48,6 +52,9 @@
                     </div>
                     {% else %}
                     <div class="navbar-nav ms-auto ancLinks">
+                        <a class="nav-link" href="/blog">Blog</a>
+                        <a class="nav-link" href="#about">About Us</a>
+                        <a class="nav-link" href="#contact">Contact</a>
                         <a class="nav-link" aria-current="page" href="/signup">Sign up</a>
                         <a class="nav-link" href="/login">Login</a>
                       </div>
@@ -128,7 +135,40 @@
                 </div>
             </div>
 
-            <div class="footer">
+            <div class="aboutDiv" id="about">
+                <div class="aboutGridLg">
+                    <div class="textElm">
+                        <p class="welcome">Welcome to Techive, your ultimate hub for technology enthusiasts, learners, and innovators.</p>
+                        <p>Meet Our <span class="founder">Founder</span></p>
+                        <div class="aboutFounder">
+                            <p>Essie is the visionary behind Techive. With passion for technology, she created Techive as a platform where knowledge can be shared.</p>
+                            <p>Her journey in the tech world started few years ago as a self-taught programmer. Over the years, she has honed her skills in software development and web technologies and her mission has always been to thrive in the digital age. Her dedication to fostering a supportive community has made Techive a go-to platform for learners and innovators alike.</p>
+                            <p>Empowering through knowledge, innovating through passion.</p>
+                        </div>
+                    </div>
+
+                    <div class="aboutImgDiv">
+                        <img src="/static/images/essie.jpg" alt="Founder" class="abtimg">
+                    </div>
+                </div>
+
+                <div class="aboutGridSm">
+                    <div class="textElm">
+                        <p class="welcome">Welcome to Techive, your ultimate hub for technology enthusiasts, learners, and innovators.</p>
+                        <p>Meet Our <span class="founder">Founder</span></p>
+                        <div class="aboutImgDiv">
+                            <img src="/static/images/essie.jpg" alt="Founder" class="abtimg">
+                        </div>
+                        <div class="aboutFounder">
+                            <p>Essie is the visionary behind Techive. With passion for technology, she created Techive as a platform where knowledge can be shared.</p>
+                            <p>Her journey in the tech world started few years ago as a self-taught programmer. Over the years, she has honed her skills in software development and web technologies and her mission has always been to thrive in the digital age. Her dedication to fostering a supportive community has made Techive a go-to platform for learners and innovators alike.</p>
+                            <p>Empowering through knowledge, innovating through passion.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer" id="contact">
                 <div class="grid">
                     <div>
                         <h5>Help</h5>
@@ -163,6 +203,8 @@
                             Our mission is to create a space where tech enthusiasts, professionals, and curious minds can connect, 
                             share ideas, and stay updated on the ever-evolving world of technology.
                         </p>
+                        <a href="mailto:essietasharae@gmail.com" class="mail">essietasharae@gmail.com</a>
+                        <a href="tel:+2347018454916" class="telephone">+2347018454916</a>
                         <a href="/progress" class="privacy">Terms of Privacy</a>
 
                     </div>

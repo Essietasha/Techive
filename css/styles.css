@@ -192,6 +192,10 @@ footer .footer .grid .privacy {
 footer .footer .about {
   color: rgb(228, 211, 211);
 }
+footer .footer .telephone, footer .footer .mail {
+  font-size: 14px;
+  font-style: italic;
+}
 
 .homebg {
   display: flex;
@@ -530,6 +534,51 @@ footer .footer .about {
   color: #b04604;
 }
 
+.aboutDiv {
+  border-top-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  background-color: #F4F6FF;
+  min-height: 90vh;
+  text-align: center;
+  color: #111;
+}
+.aboutDiv .aboutGridSm {
+  display: none;
+}
+.aboutDiv .aboutGridLg {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+}
+.aboutDiv .aboutGridLg .aboutImgDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.aboutDiv .aboutGridLg .aboutImgDiv img {
+  width: 80%;
+  height: 80%;
+  border-top-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+}
+.aboutDiv .aboutGridLg .textElm .founder {
+  color: orangered;
+  font-weight: bold;
+}
+.aboutDiv .aboutGridLg .textElm .welcome {
+  font-size: 2rem;
+  color: gray;
+}
+.aboutDiv .aboutGridLg .textElm .aboutFounder {
+  padding: 3rem 5rem 1rem 5rem;
+}
+.aboutDiv .aboutGridLg .textElm .aboutFounder p:nth-child(3) {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
 .fab {
   background-color: #009990;
 }
@@ -548,6 +597,43 @@ footer .footer .about {
 
 .slightanime {
   animation: slightAnime 5s ease normal;
+}
+
+.blog {
+  background-color: #fff;
+  color: #111;
+  padding: 5rem 2rem 2rem 2rem;
+  overflow: hidden;
+}
+.blog .boxes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  width: 90vw;
+  margin: 2.5rem 0rem;
+}
+.blog .boxes .textElement {
+  background-color: gainsboro;
+  padding: 0rem 3rem;
+  border-bottom-right-radius: 3rem;
+  height: 100%;
+}
+.blog .boxes .textElement h4 {
+  margin-top: 2rem;
+  font-weight: bolder;
+  color: #000B58;
+}
+.blog .boxes .imageElement {
+  color: #fff;
+  background-color: #000B58;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 3rem;
 }
 
 @keyframes homeSlide {
@@ -680,5 +766,71 @@ footer .footer .about {
     padding: 1rem 1rem 0.5rem 1rem;
     display: grid;
     grid-template-columns: 20% 80%;
+  }
+  .aboutDiv {
+    border-top-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+  .aboutDiv .aboutGridLg {
+    display: none;
+  }
+  .aboutDiv .aboutGridSm {
+    display: block;
+  }
+  .aboutDiv .aboutGridSm .aboutImgDiv {
+    height: 300px;
+    width: 90vw;
+  }
+  .aboutDiv .aboutGridSm .aboutImgDiv .abtimg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+  }
+  .aboutDiv .aboutGridSm .textElm .founder {
+    color: orangered;
+    font-weight: bold;
+  }
+  .aboutDiv .aboutGridSm .textElm .welcome {
+    padding-top: 2rem;
+    font-size: 1.8rem;
+    color: gray;
+  }
+  .aboutDiv .aboutGridSm .textElm .aboutFounder {
+    padding: 3rem 2rem;
+  }
+  .aboutDiv .aboutGridSm .textElm .aboutFounder p:nth-child(3) {
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+  .blog {
+    color: #111;
+    padding: 2rem 1rem;
+  }
+  .blog .boxes {
+    display: block;
+    min-height: 100vh;
+    width: 90vw;
+    margin: 2rem 0rem;
+  }
+  .blog .boxes .textElement {
+    padding: 2rem 2rem 1rem 2rem;
+    border-bottom-right-radius: 3rem;
+    height: auto;
+    width: 100%;
+  }
+  .blog .boxes .textElement h4 {
+    margin-top: 0rem;
+  }
+  .blog .boxes .textElement p {
+    font-size: 14px;
+  }
+  .blog .boxes .imageElement {
+    height: auto;
+    width: 100%;
+  }
+  .blog .boxes .imageElement h3 {
+    padding: 3rem 1rem;
   }
 }

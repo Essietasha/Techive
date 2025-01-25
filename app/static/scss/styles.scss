@@ -7,6 +7,18 @@ $background-color: #0D7C66;
     align-items: center;
 }
 
+@mixin gridBox{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin curveLBEdge {
+    border-top-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+}
+
 body, html {
     overflow-x: hidden;
 }
@@ -240,6 +252,11 @@ footer{
 
         .about{
             color: rgb(228, 211, 211);
+        }
+
+        .telephone, .mail{
+            font-size: 14px;
+            font-style: italic
         }
     }
 }
@@ -634,6 +651,56 @@ footer{
     
 }
 
+.aboutDiv{
+    @include curveLBEdge();
+    background-color: #F4F6FF;
+    min-height: 90vh;
+    text-align: center;
+    color: #111;
+
+    .aboutGridSm{
+        display: none;
+    }
+
+    .aboutGridLg{
+        @include gridBox();
+
+        .aboutImgDiv{
+            @include flexCenter;
+            height: 100%;
+
+            
+            img{
+                width: 80%;
+                height: 80%;
+                @include curveLBEdge();
+            }
+        }
+
+        .textElm{
+
+            .founder{
+                color: orangered;
+                font-weight: bold;
+            }
+
+            .welcome{
+                font-size: 2rem;
+                color: gray;
+            }
+            
+            .aboutFounder{
+                padding: 3rem 5rem 1rem 5rem;
+
+                p:nth-child(3){
+                    font-size: 0.8rem;
+                    font-style: italic;
+                }
+            }
+        }
+    }
+}
+
 .fab{
     background-color: #009990;
 }
@@ -652,6 +719,42 @@ footer{
 
 .slightanime{
     animation: slightAnime 5s ease normal;
+}
+
+.blog{
+    background-color: $white;
+    color: #111;
+    padding: 5rem 2rem 2rem 2rem;
+    overflow: hidden;
+
+    .boxes{
+        @include gridBox;
+        min-height: 80vh;
+        width: 90vw;
+        margin: 2.5rem 0rem;        
+
+        .textElement{
+            background-color: gainsboro;
+            padding: 0rem 3rem;
+            border-bottom-right-radius: 3rem;
+            height: 100%;
+
+            h4{
+                margin-top: 2rem;
+                font-weight: bolder;
+                color: #000B58;
+            }
+        }
+
+        .imageElement{
+            color: #fff;
+            background-color: #000B58;
+            height: 100%;
+            width: 100%;
+            @include flexCenter();
+            border-top-left-radius: 3rem;
+        }
+    }
 }
 
 
@@ -824,4 +927,88 @@ footer{
             grid-template-columns: 20% 80%;
         }
     }
+
+    .aboutDiv{
+        @include curveLBEdge();
+    
+        .aboutGridLg{
+            display: none;
+        }
+    
+        .aboutGridSm{
+            display: block;
+
+            .aboutImgDiv{
+                height: 300px;
+                width: 90vw;
+    
+                .abtimg{
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    @include curveLBEdge();
+                }
+            }
+    
+            .textElm{
+    
+                .founder{
+                    color: orangered;
+                    font-weight: bold;
+                }
+    
+                .welcome{
+                    padding-top: 2rem;
+                    font-size: 1.8rem;
+                    color: gray;
+                }
+                
+                .aboutFounder{
+                    padding: 3rem 2rem;
+    
+                    p:nth-child(3){
+                        font-size: 0.8rem;
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+    }
+
+    .blog{
+        color: #111;
+        padding: 2rem 1rem;
+    
+        .boxes{
+            display: block;
+            min-height: 100vh;
+            width: 90vw;
+            margin: 2rem 0rem;        
+    
+            .textElement{
+                padding: 2rem 2rem 1rem 2rem;
+                border-bottom-right-radius: 3rem;
+                height: auto;
+                width: 100%;
+
+                h4{
+                    margin-top: 0rem;
+                }
+
+                p{
+                    font-size: 14px;
+                }
+            }
+    
+            .imageElement{
+                height: auto;
+                width: 100%;
+
+                h3{
+                    padding: 3rem 1rem;
+                }
+            }
+        }
+    }
+    
 }
