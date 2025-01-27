@@ -748,6 +748,17 @@ footer .footer .telephone, footer .footer .mail {
     display: grid;
     grid-template-columns: 20% 80%;
   }
+  .postsPage .posts .comments-section textarea {
+    min-width: 180px;
+    max-width: 180px;
+    padding: 10px 5px;
+  }
+  .postsPage .posts .comments-section button {
+    padding: 0.4rem 0.8rem;
+  }
+  .postsPage .posts .comments-section .replies {
+    font-size: 14px;
+  }
   .signupFlex {
     grid-template-columns: 40% 55%;
   }

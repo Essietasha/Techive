@@ -60,7 +60,7 @@
                         {% for comment in post.comments %}
                         <div>
                             <span class="creator">@{{ comment.user.username }}</span>
-                            <span>{{ comment.comment_content }}</span>
+                            <span class="replies">{{ comment.comment_content }}</span>
                         </div>
                         {% endfor %}
                 </div>

@@ -901,6 +901,23 @@ footer{
             padding: 1rem 0.5rem 0.5rem 1rem;
             display: grid;
             grid-template-columns: 20% 80%;
+
+            .comments-section{
+    
+                textarea{
+                    min-width: 180px;
+                    max-width: 180px;
+                    padding: 10px 5px;
+                }
+    
+                button{
+                    padding: 0.4rem 0.8rem;
+                }
+
+                .replies{
+                    font-size: 14px;
+                }
+            }
         }
     }
     
