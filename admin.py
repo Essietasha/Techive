@@ -10,4 +10,4 @@ with app.app_context():
         db.session.commit()
         print("Admin user created successfully!")
     else:
-        print("Admin user already exists.")
+        print("Admin user already exists!")
