@@ -11,3 +11,4 @@ static/js/
 .vscode/
 .idea/
 flask_session/
+admin.py
