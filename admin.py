@@ -1,6 +1,5 @@
 from app import app, db
 from app.models import User
-from app.models import Post
 
 with app.app_context():
     admin_user = User.query.filter_by(username='essietasha').first()
