@@ -13,7 +13,7 @@
         <form action="/category" method="post">
             <div>
                     {% for category in categories %}
-                        <button name="category"  value="{{ category.name }}" type="submit" class="btn btn-dark btnCategory">{{ category.name }}</option>
+                        <button name="category"  value="{{ category.name }}" type="submit" class="btn btn-info btnCategory">{{ category.name }}</option>
                     {% endfor %}
             </div>
         </form>

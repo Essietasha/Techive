@@ -1,5 +1,11 @@
 $white: #fff;
-$background-color: #0D7C66;
+// $background-color: #0D7C66;
+$background-color: #000000;
+// $background-color: #eaf0f6;
+// $background-color: #ffebc9;
+// $background-color: #F3EED4;
+// $background-color: #ffb49d;;
+// background-color: rgb(162, 190, 206);
 
 @mixin flexCenter {
     display: flex;
@@ -97,6 +103,7 @@ nav{
 
     .fa-user{
         margin-top: 1rem;
+        margin-right: 10px;
     }
 }
 
@@ -150,7 +157,7 @@ footer{
 
             p:nth-child(2){
                 font-size: 1.5rem;
-                color: $white;
+                // color: $white;
                 text-align: center;
                 padding: 0rem 3rem;
             }
@@ -170,7 +177,11 @@ footer{
     }
 
     .categorygridEl1{
-        background-color: #ebb951;
+        background-color: #ffebc9;
+    }
+    
+    .categorygridEl1 p{
+        color: #000000;
     }
 
     .categorygridEl2{
@@ -187,7 +198,7 @@ footer{
         align-items: center;
         text-align: center;
         min-height: 70vh;
-        background-color: $white;
+        background-color: rgb(162, 190, 206);
         color: #111;
 
         p:nth-child(1){
@@ -196,7 +207,7 @@ footer{
 
         
         .startBtn{
-            background-color: orangered;
+            background-color: #fa9200;
             color: $white;
             font-weight: bold;
             font-size: 14px;
@@ -214,7 +225,7 @@ footer{
 
     .footer{
         background-color: #1d2b34;
-        min-height: 500px;
+        min-height: 550px;
     
         .grid{
             display: grid;
@@ -293,7 +304,7 @@ footer{
     }
 
     .startBtn{
-        background-color: orangered;
+        background-color: #ff9500;
         color: $white;
         font-weight: bold;
         font-size: 14px;
@@ -312,30 +323,45 @@ footer{
 
 .signupFlex{
     display: grid;
-    grid-template-columns: 30% 40%;
+    grid-template-columns: 30% 70%;
     min-height: 90vh;
 
     .signupLeftDiv {
         position: relative;
         background-color: #111;
-        margin-right: 2rem;
+        padding-left: 2rem;
         padding-top: 3rem;
         
-        .copy{
-            margin-top: 5rem;
+        h1{
+            font-size: 4rem;
+            font-weight: bolder;
+            margin-left: 1rem;
         }
 
         p{
             color: $white;
-            margin-left: 1rem;
             color: $white;
+            font-size: 10px;
+            margin-right: 2rem;
+        }
+
+        img{
+            width: 300px;
+            height: 300px;
+            border-radius: 10px;
+            margin: 2rem 0rem;
         }
     }
 
-    .signupRightDiv {
-        margin-left: 3rem;
-        margin-top: 5rem;
+    .signupRightDivBox{
+        background-color: #ffebc9;
+    }
 
+    .signupRightDiv {
+        padding-left: 3rem;
+        padding-top: 5rem;
+        color: #111;
+        width: 90%;
         form{
             margin-top: 3rem;
         }
@@ -561,7 +587,7 @@ footer{
     @include flexCenter;
     min-height: 100vh;
     text-align: center;
-    background-color: #5DB996;
+    background-color: #f4d9ac;
     color: $white;
 
     button{
@@ -583,7 +609,7 @@ footer{
     }
 
     .centrr{
-        background-color: #46846c;
+        background-color: #111;
         box-shadow: 0px 0px 20px 0px #333;
         padding: 5rem 10rem;
         border-radius: 10px;

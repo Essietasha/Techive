@@ -46,13 +46,13 @@
                         <span id="likes-count-{{ post.id }}">{{ post.likes.count() }}</span>
                     </div>           
                     
-                    <div>
+                    <!-- <div>
                         <button class="toggle-comments-btn" onclick="toggleComments('{{ post.id }}')">
                             {{ post.comment_count }} <i class="fa fa-comment-dots"></i> 
                         </button>
-                    </div>
+                    </div> -->
                 </div>
-                <div id="comments-{{ post.id }}" class="comments-section" style="display: none;">
+                <!-- <div id="comments-{{ post.id }}" class="comments-section" style="display: none;">
                     <form method="POST" action="{{ url_for('comment_post', post_id=post.id) }}">
                         <textarea name="commentposted" required placeholder="Leave your thoughts here..."></textarea>
                         <button type="submit">Post</button>
@@ -63,7 +63,7 @@
                             <span class="replies">{{ comment.comment_content }}</span>
                         </div>
                         {% endfor %}
-                </div>
+                </div> -->
                 
             </div>
         </div>

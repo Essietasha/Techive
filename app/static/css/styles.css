@@ -6,7 +6,7 @@ body {
   /* background-color: #379777;
   background-color: #4aa492; 
   background-color: #5DB996;  */
-  background-color: #0D7C66;
+  background-color: #000000;
   color: #fff;
   font-family: "Roboto", sans-serif;
   overflow: hidden;
@@ -65,6 +65,7 @@ nav ul li:nth-last-child(1), nav .logo {
 }
 .ancLinks .fa-user {
   margin-top: 1rem;
+  margin-right: 10px;
 }
 
 footer .joinus {
@@ -108,7 +109,6 @@ footer .categorygrid .textEl p:nth-child(1) {
 }
 footer .categorygrid .textEl p:nth-child(2) {
   font-size: 1.5rem;
-  color: #fff;
   text-align: center;
   padding: 0rem 3rem;
 }
@@ -123,7 +123,10 @@ footer .categorygrid .textEl p:nth-child(3) a:hover {
   color: #343131;
 }
 footer .categorygridEl1 {
-  background-color: #ebb951;
+  background-color: #ffebc9;
+}
+footer .categorygridEl1 p {
+  color: #000000;
 }
 footer .categorygridEl2 {
   background-color: #009990;
@@ -137,14 +140,14 @@ footer .testimonial {
   align-items: center;
   text-align: center;
   min-height: 70vh;
-  background-color: #fff;
+  background-color: rgb(162, 190, 206);
   color: #111;
 }
 footer .testimonial p:nth-child(1) {
   font-size: 3rem;
 }
 footer .testimonial .startBtn {
-  background-color: orangered;
+  background-color: #fa9200;
   color: #fff;
   font-weight: bold;
   font-size: 14px;
@@ -159,7 +162,7 @@ footer .testimonial .startBtn:hover {
 }
 footer .footer {
   background-color: #1d2b34;
-  min-height: 500px;
+  min-height: 550px;
 }
 footer .footer .grid {
   display: grid;
@@ -228,7 +231,7 @@ footer .footer .telephone, footer .footer .mail {
   font-size: 3.5rem;
 }
 .homebg .startBtn {
-  background-color: orangered;
+  background-color: #ff9500;
   color: #fff;
   font-weight: bold;
   font-size: 14px;
@@ -244,26 +247,40 @@ footer .footer .telephone, footer .footer .mail {
 
 .signupFlex {
   display: grid;
-  grid-template-columns: 30% 40%;
+  grid-template-columns: 30% 70%;
   min-height: 90vh;
 }
 .signupFlex .signupLeftDiv {
   position: relative;
   background-color: #111;
-  margin-right: 2rem;
+  padding-left: 2rem;
   padding-top: 3rem;
 }
-.signupFlex .signupLeftDiv .copy {
-  margin-top: 5rem;
+.signupFlex .signupLeftDiv h1 {
+  font-size: 4rem;
+  font-weight: bolder;
+  margin-left: 1rem;
 }
 .signupFlex .signupLeftDiv p {
   color: #fff;
-  margin-left: 1rem;
   color: #fff;
+  font-size: 10px;
+  margin-right: 2rem;
+}
+.signupFlex .signupLeftDiv img {
+  width: 300px;
+  height: 300px;
+  border-radius: 10px;
+  margin: 2rem 0rem;
+}
+.signupFlex .signupRightDivBox {
+  background-color: #ffebc9;
 }
 .signupFlex .signupRightDiv {
-  margin-left: 3rem;
-  margin-top: 5rem;
+  padding-left: 3rem;
+  padding-top: 5rem;
+  color: #111;
+  width: 90%;
 }
 .signupFlex .signupRightDiv form {
   margin-top: 3rem;
@@ -455,7 +472,7 @@ footer .footer .telephone, footer .footer .mail {
   align-items: center;
   min-height: 100vh;
   text-align: center;
-  background-color: #5DB996;
+  background-color: #f4d9ac;
   color: #fff;
 }
 .centr button {
@@ -473,7 +490,7 @@ footer .footer .telephone, footer .footer .mail {
   margin: 5rem;
 }
 .centr .centrr {
-  background-color: #46846c;
+  background-color: #111;
   box-shadow: 0px 0px 20px 0px #333;
   padding: 5rem 10rem;
   border-radius: 10px;

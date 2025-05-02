@@ -24,7 +24,7 @@
                 <div class="logoDiv">
                     <a href="/"><img src="/static/images/brand.png" class="brand"/></a>
                     
-                    <a href="/" class="logo d-none d-md-inline">Techive</a>
+                    <!-- <a href="/" class="logo d-none d-md-inline">Techive</a> -->
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,16 +39,16 @@
                         <a class="nav-link" href="/allposts">Posts</a>
                         <a class="nav-link" href="/myposts">My Posts</a>
                         <a class="nav-link" href="/category">Categories</a>
-                        <a class="nav-link" href="/creators">Creators</a>
+                        <!-- <a class="nav-link" href="/creators">Creators</a> -->
                         <a class="nav-link" href="/blog">Blog</a>
-                        <a class="nav-link" href="#about">About Us</a>
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="#about">About</a>
+                        <!-- <a class="nav-link" href="#contact">Contact</a> -->
                         <a class="nav-link" href="/logout">Logout</a>
+                        <a href="/creators"><i class="fa fa-user"></i></a>
                         <form action="/allposts" method="get" style="display: inline;" class="searchbox">
                             <input type="text" name="q" placeholder="Search posts..." autocomplete="off" required>
                             <!-- <button type="submit">Search</button> -->
                         </form>    
-                        <a href="/creators"><i class="fa fa-user"></i></a>                    
                     </div>
                     {% else %}
                     <div class="navbar-nav ms-auto ancLinks">
@@ -101,10 +101,10 @@
 
             <div class="categorygrid categorygridEl1">
                 <div class="imgDiv">
-                    <img src="/static/images/techivecategories.jpg" alt="Catgories of post">
+                    <img src="/static/images/space.jpg" alt="Catgories of post">
                 </div>
                 <div class="textEl">
-                    <p>300+ Post Categories</p>
+                    <p>At Techive</p>
                     <p>Techive provides a robust system that is easy to use and capable of sharing even the most complicated stories.</p>
                     <p>
                         <a href="/allposts">Check out our stories.</a>
