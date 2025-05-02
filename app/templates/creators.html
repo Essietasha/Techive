@@ -27,7 +27,7 @@
                     {% if is_admin and user.id != current_user.id %}
                     <!-- Prevent deleting me -->
                         <form action="/delete_user/{{ user.id }}" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-danger">Delete User</button>
                         </form>
                     {% endif %}
                 </h6>
